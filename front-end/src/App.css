@@ -1,0 +1,205 @@
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fade-in-scale-up {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Gradiente de fundo */
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+.App {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #fff;
+  transition: max-width 0.4s ease, padding 0.4s ease;
+}
+
+.App h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.App p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 10px 0 30px 0;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.App input[type='text'], .App button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.App input[type='text'] {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.App input[type='text']::placeholder { color: rgba(255, 255, 255, 0.6); }
+
+.App input[type='text']:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+.App button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.App button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.App button:disabled {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.4);
+  cursor: not-allowed;
+}
+
+.result-section {
+  margin-top: 30px;
+}
+
+.qr-code-container, .qr-placeholder {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 16px;
+}
+
+.qr-code-container {
+  background: #fff;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.qr-code-container.visible {
+  animation: fade-in-scale-up 0.5s ease forwards;
+}
+
+.App img {
+  display: block;
+  max-width: 200px;
+  border-radius: 8px;
+}
+
+.qr-placeholder {
+  width: 240px;
+  height: 240px;
+  box-sizing: border-box;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  opacity: 0.7;
+}
+
+.qr-placeholder svg { stroke: rgba(255, 255, 255, 0.8); }
+
+.qr-placeholder span {
+  font-weight: 500;
+  font-size: 0.9rem;
+  max-width: 150px;
+}
+
+@media (min-width: 992px) {
+  .App {
+    max-width: 960px;
+    padding: 60px;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .controls-section { text-align: left; }
+
+  .App h1 { font-size: 2.8rem; }
+  
+  .input-section { flex-direction: row; }
+  
+  .App input[type='text'] { flex-grow: 1; width: auto; }
+  
+  .App button { width: auto; }
+
+  .result-section {
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+  }
+  
+  .App img {
+    max-width: 300px;
+  }
+  
+  .qr-placeholder {
+    width: 320px; 
+    height: 320px; 
+  }
+}
