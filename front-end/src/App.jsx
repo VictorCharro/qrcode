@@ -14,7 +14,7 @@ function App() {
       setIsQrCodeVisible(false)
 
       const requestBody = { texto: texto }
-      const response = await fetch('http://localhost:8080/qr/gerar', {
+      const response = await fetch('https://qrcode-c3sb.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
