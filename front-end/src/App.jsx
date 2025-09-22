@@ -14,11 +14,16 @@ function App() {
       setIsQrCodeVisible(false)
 
       const requestBody = { texto: texto }
-      const response = await fetch('https://qrcode-c3sb.onrender.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody)
-      })
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080'
+      const response = await fetch(`${apiUrl}/qr/gerar`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(requestBody)
+            })
+
+        if (!response.ok) {
+                throw new Error('A resposta do servidor não foi bem-sucedida.')
+              }
 
       const data = await response.json()
       setQrCode(data.qrCode)
